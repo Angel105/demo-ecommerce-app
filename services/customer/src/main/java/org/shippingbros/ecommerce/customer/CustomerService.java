@@ -3,7 +3,7 @@ package org.shippingbros.ecommerce.customer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
-import org.shippingbros.ecommerce.customer.exception.CustomerNotFoundException;
+import org.shippingbros.ecommerce.exception.CustomerNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

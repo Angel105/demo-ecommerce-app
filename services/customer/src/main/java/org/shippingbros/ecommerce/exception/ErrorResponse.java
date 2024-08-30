@@ -1,4 +1,4 @@
-package org.shippingbros.ecommerce.customer.exception;
+package org.shippingbros.ecommerce.exception;
 
 import java.util.Map;
 

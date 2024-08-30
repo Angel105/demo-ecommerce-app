@@ -1,4 +1,4 @@
-package org.shippingbros.ecommerce.customer.exception;
+package org.shippingbros.ecommerce.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
