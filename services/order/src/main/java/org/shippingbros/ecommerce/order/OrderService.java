@@ -9,6 +9,8 @@ import org.shippingbros.ecommerce.kafka.OrderConfirmation;
 import org.shippingbros.ecommerce.kafka.OrderProducer;
 import org.shippingbros.ecommerce.orderline.OrderLineRequest;
 import org.shippingbros.ecommerce.orderline.OrderLineService;
+import org.shippingbros.ecommerce.payment.PaymentClient;
+import org.shippingbros.ecommerce.payment.PaymentRequest;
 import org.shippingbros.ecommerce.product.ProductClient;
 import org.shippingbros.ecommerce.product.PurchaseRequest;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ public class OrderService {
     private final OrderMapper mapper;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
 
 
     public Integer createOrder(@Valid OrderRequest request) {
@@ -52,7 +55,16 @@ public class OrderService {
             );
         }
 
-        // TODO: start payment process
+        // start payment process
+        var paymentRequest = new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+        paymentClient.requestOrderPayment(paymentRequest);
+
 
         // send the oder confirmation --> notification-ms (kafka)
         orderProducer.sendOrderConfirmation(
