@@ -32,7 +32,6 @@ public class EmailService {
     private static final String EMAIL_SEND_FAILURE_LOG_MSG = "WARNING - Cannot send email to {}";
 
     private final JavaMailSender mailSender;
-
     private final SpringTemplateEngine templateEngine;
 
     @Async
