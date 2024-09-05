@@ -93,6 +93,7 @@ public class EmailService {
             log.info(EMAIL_SEND_SUCCESS_LOG_MSG, recipientEmail, templateName);
         } catch (MessagingException e) {
             log.warn(EMAIL_SEND_FAILURE_LOG_MSG, recipientEmail);
+            throw e;  // or handle the exception in a way that makes sense for your application
         }
     }
 
